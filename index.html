@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+
+  <h1 class="text-4xl font-bold mt-6">Game Table</h1>
+
+  <!-- MENU -->
+  <div id="menu" class="mt-8 space-x-4">
+    <button class="game-btn" data-game="whack">Whack‑a‑Mole</button>
+    <button class="game-btn" data-game="memory">Memory Match</button>
+    <button class="game-btn" data-game="snake">Snake</button>
+  </div>
+
+  <!-- GAME CONTAINERS -->
+  <div id="memory" class="game hidden mt-10"></div>
+  <div id="snake" class="game hidden mt-10">
+    <canvas id="snakeCanvas" width="400" height="400"></canvas>
+  </div>
+
+  <!-- WHACK-A-MOLE GAME -->
+<div id="whack" class="game hidden mt-10 flex flex-col items-center">
+
+  <!-- Title -->
+  <h2 class="text-4xl font-bold mb-6 text-yellow-300 drop-shadow-lg">
+    Whack‑a‑Mole
+  </h2>
+
+  <!-- Score + Start Button -->
+  <div class="flex items-center space-x-8 mb-8">
+    <p class="text-2xl font-semibold">
+      Score: <span id="whackScore" class="text-green-400">0</span>
+    </p>
+
+    <button
+      id="startWhackBtn"
+      class="px-6 py-3 bg-green-600 hover:bg-green-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold"
+    >
+      Start Game
+    </button>
+  </div>
+
+  <!-- Grid of Holes -->
+  <div id="whackGrid" class="grid grid-cols-3 gap-6">
+
+    <!-- 9 Holes -->
+    <!-- Each hole is a container where the mole will appear -->
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+
+  </div>
+
+</div>
+<script defer src="javascript/whack.js"></script>
+<script defer src="javascript/controller.js"></script>
+</body>
+</html>
