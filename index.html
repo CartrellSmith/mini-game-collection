@@ -19,11 +19,6 @@
     <button class="game-btn" data-game="snake">Snake</button>
   </div>
 
-  <!-- GAME CONTAINERS -->
-  <div id="snake" class="game hidden mt-10">
-    <canvas id="snakeCanvas" width="400" height="400"></canvas>
-  </div>
-
   <!-- WHACK-A-MOLE GAME -->
   <div id="whack" class="game hidden mt-10 flex flex-col items-center">
 
@@ -94,11 +89,40 @@
         Play Again
       </button>
     </div>
+  </div>
 
+  <!-- Snake Game -->
+  <div id="snake" class="game hidden mt-10 flex flex-col items-center">
+    <canvas id="snakeCanvas" width="400" height="400"></canvas>
+
+    <h2 class="text-4xl font-bold mb-6 text-green-300 drop-shadow-lg">
+      Snake
+    </h2>
+
+    <p class="text-2xl font-semibold mb-4">
+      Score: <span id="snakeScore" class="text-yellow-300">0</span>
+    </p>
+
+    <div class="flex space-x-4 mb-6">
+      <button id="startSnakeBtn"
+        class="px-6 py-3 bg-green-600 hover:bg-green-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
+        Start Game
+      </button>
+
+      <button id="endSnakeBtn"
+        class="px-6 py-3 bg-red-600 hover:bg-red-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
+        End Game
+      </button>
+      <button id="restartSnakeBtn"
+        class="px-6 py-3 bg-purple-600 hover:bg-purple-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
+        Restart Game
+      </button>
+    </div>
   </div>
 
   <script defer src="javascript/whack.js"></script>
   <script defer src="javascript/memory.js"></script>
+  <script defer src="javascript/snake.js"></script>
   <script defer src="javascript/controller.js"></script>
 </body>
 
