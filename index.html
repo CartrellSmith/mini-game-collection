@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Game Table</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen flex flex-col items-center">
@@ -19,7 +20,6 @@
   </div>
 
   <!-- GAME CONTAINERS -->
-  <div id="memory" class="game hidden mt-10"></div>
   <div id="snake" class="game hidden mt-10">
     <canvas id="snakeCanvas" width="400" height="400"></canvas>
   </div>
@@ -42,18 +42,15 @@
         class="px-6 py-3 bg-green-600 hover:bg-green-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
         Start Game
       </button>
+
       <button id="endWhackBtn"
         class="px-6 py-3 bg-red-600 hover:bg-red-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
         End Game
       </button>
-
     </div>
 
     <!-- Grid of Holes -->
     <div id="whackGrid" class="grid grid-cols-3 gap-6">
-
-      <!-- 9 Holes -->
-      <!-- Each hole is a container where the mole will appear -->
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
@@ -65,11 +62,43 @@
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
       <div class="hole w-28 h-28 bg-gray-700 rounded-xl relative overflow-hidden shadow-inner"></div>
+    </div>
+  </div>
 
+  <!-- MEMORY MATCH GAME -->
+  <div id="memory" class="game hidden mt-10 flex flex-col items-center">
+
+    <h2 class="text-4xl font-bold mb-6 text-blue-300 drop-shadow-lg">
+      Memory Match
+    </h2>
+
+    <div class="flex items-center space-x-8 mb-8">
+      <p class="text-2xl font-semibold">
+        Matches: <span id="memoryScore" class="text-green-400">0</span>
+      </p>
+
+      <button id="startMemoryBtn"
+        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
+        Start Game
+      </button>
+    </div>
+
+    <div id="memoryGrid" class="grid grid-cols-4 gap-4"></div>
+
+    <!-- Restart Screen -->
+    <div id="memoryRestart" class="hidden mt-8 flex flex-col items-center">
+      <h3 class="text-3xl font-bold text-yellow-300 mb-4">You Win! 🎉</h3>
+
+      <button id="restartMemoryBtn"
+        class="px-6 py-3 bg-purple-600 hover:bg-purple-700 active:scale-95 transition rounded-lg shadow-lg text-lg font-semibold">
+        Play Again
+      </button>
     </div>
 
   </div>
+
   <script defer src="javascript/whack.js"></script>
+  <script defer src="javascript/memory.js"></script>
   <script defer src="javascript/controller.js"></script>
 </body>
 

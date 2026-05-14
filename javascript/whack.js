@@ -123,4 +123,4 @@ function endWhackGame() {
 
 //Button listeners
 startWhackBtn.addEventListener("click", startWhackGame);
-document.getElementById("endWhackBtn").addEventListener("click", endWhackGame);
+document
