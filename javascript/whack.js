@@ -1,4 +1,9 @@
 console.log("Whack JS loaded");
+//Sounds
+const hitSound = new Audio("Sounds/hit.mp3");
+const popSound = new Audio("Sounds/pop.mp3");
+const gameOverSound = new Audio("sounds/game-over.mp3");
+
 /*  
   WHACK‑A‑MOLE GAME LOGIC
   ------------------------
@@ -19,6 +24,7 @@ const startWhackBtn = document.getElementById("startWhackBtn");
 let score = 0;
 let gameInterval = null;
 let moleVisible = false;
+let gameRunning = false;
 
 // Create a reusable mole element
 function createMole() {
@@ -33,6 +39,12 @@ function createMole() {
     if (moleVisible) {
       score++;
       whackScore.textContent = score;
+
+
+      // Play hit sound
+      hitSound.currentTime = 0;
+      hitSound.play();
+
       hideMole(mole);
     }
   });
@@ -45,6 +57,12 @@ function showMole(mole) {
   moleVisible = true;
   mole.classList.remove("opacity-0", "translate-y-6");
   mole.classList.add("opacity-100", "translate-y-0");
+
+  // Play pop sound
+  if (popSound) {
+    popSound.currentTime = 0;
+    popSound.play();
+  }
 }
 
 // Hide mole with animation
@@ -58,6 +76,7 @@ function hideMole(mole) {
 function startWhackGame() {
   score = 0;
   whackScore.textContent = score;
+  gameRunning = true;
 
   // Clear any previous interval
   if (gameInterval) clearInterval(gameInterval);
@@ -71,6 +90,8 @@ function startWhackGame() {
 
   // Random mole pop-up every 700ms
   gameInterval = setInterval(() => {
+    if (!gameRunning) return;
+
     const holes = document.querySelectorAll(".hole");
     const randomHole = holes[Math.floor(Math.random() * holes.length)];
     const mole = randomHole.querySelector(".mole");
@@ -83,5 +104,23 @@ function startWhackGame() {
   }, 700);
 }
 
-// Start button listener
+function endWhackGame() {
+  gameRunning = false;
+
+  // Stop interval
+  if (gameInterval) {
+    clearInterval(gameInterval);
+    gameInterval = null;
+  }
+
+  // Hide all moles
+  document.querySelectorAll(".mole").forEach(mole => hideMole(mole));
+
+  // Play game over sound
+  gameOverSound.currentTime = 0;
+  gameOverSound.play();
+}
+
+//Button listeners
 startWhackBtn.addEventListener("click", startWhackGame);
+document.getElementById("endWhackBtn").addEventListener("click", endWhackGame);
